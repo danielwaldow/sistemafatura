@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package users;
+
+import "google/protobuf/empty.proto";
+
+message User {
+  uint32 id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+}
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (User);
+  rpc GetUsers(google.protobuf.Empty) returns (stream User);
+  rpc CreateUser(User) returns (User);
+  rpc UpdateUser(User) returns (User);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+message GetUserRequest {
+  uint32 id = 1;
+}
+
+message DeleteUserRequest {
+  uint32 id = 1;
+}
+
+message DeleteUserResponse {
+  bool success = 1;
+}
+
+
+
+
+
